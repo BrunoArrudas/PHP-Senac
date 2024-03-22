@@ -34,7 +34,16 @@ echo "Esse é um texto em aspas duplas";
 echo 'Dom Pedro disse: "Indepedencia ou Morte!"';
 
 // Interpolação - Aspas Duplas
-echo "$nome tem $idade anos de idade";
+echo "$nome tem $idade anos de idade <br>";
+
+// Testando o case sensitive - palavras reservadas
+echo "texto 1 <br>";
+echo "Texto 2 <br>";
+
+//Testando o case sensitive
+$primeiroNome = "Carlos";
+echo $primeiroNome;
+ECHO $PRIMEIRONOME;
 
 ?>
 
