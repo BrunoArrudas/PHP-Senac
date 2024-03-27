@@ -28,6 +28,7 @@ foreach ($frutas as $fruta){ //Estancio uma nova variavel somente dentro desse f
     echo $fruta . "<br>"; //Nova variavel com os dados do array.
 }
 
+
 echo "Lista de Numeros: ";
 foreach($numeros as $cadanumero){
     echo $cadanumero;
