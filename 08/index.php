@@ -35,6 +35,18 @@ $array_vogais = ["a","e","i","o","u"];
 foreach($array_vogais as $vogal){
     echo "Vogal: $vogal <br>";
 }
+echo "<br>";
 
+// Exemplo 5: BREAK e CONTINUE
+echo "Exemplo 5: BREAK e CONTINUE <BR>";
+for($i = 1; $i <= 10; $i++){
+    if($i ==3){
+        continue; //Ignora o numero e segue.
+    }
+    if($i == 8){
+        break; //Ele parou no numero selecionado e parou o loop.
+    }
+    echo "Numero $i <br>";
+}
 
 ?>
