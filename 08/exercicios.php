@@ -93,5 +93,4 @@ while ($i < $termos){
     $atual = $proximo;
     $i++;
 }
-
 ?>
