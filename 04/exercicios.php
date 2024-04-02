@@ -63,5 +63,4 @@
    // Peça ao usuário que insira um número inteiro (int) e verifique se ele é um número primo. Use um booleano para indicar se o número é primo ou não.
    
    
-
 ?>
