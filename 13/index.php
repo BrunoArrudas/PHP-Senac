@@ -28,7 +28,8 @@ class contaPoupanca extends Conta{
 }
 
 class Cliente extends Conta{
-    
+    public $nome;
+    private $cpf;
 }
 
 
