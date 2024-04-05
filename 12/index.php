@@ -1,10 +1,11 @@
 <?php
 
 // Definição da calsse abstratra Personagem
-abstract class Personagem {
+abstract class Personagem
+{
     // Atributos protegidos para encapsulamento
     protected $nome;
-    protected $pontosVida;    
+    protected $pontosVida;
     protected $poderAtaque;
     private $vivo;
 
@@ -18,33 +19,38 @@ abstract class Personagem {
     }
 
     // Método para exibir dados do personagem
-    public function exibirDados() {
-        echo "Nome: {$this->nome}, Pontos de Vida: {$this->pontosVida}, Vivo: " . 
-        ($this->vivo? 'Sim' : 'Não') . "<br>";
+    public function exibirDados()
+    {
+        echo "Nome: {$this->nome}, Pontos de Vida: {$this->pontosVida}, Vivo: " .
+            ($this->vivo ? 'Sim' : 'Não') . "<br>";
     }
 
     abstract public function atacar($inimgo);
 
-    public function sofrerDano($danoSofrido) {
+    public function sofrerDano($danoSofrido)
+    {
         $this->pontosVida -= $danoSofrido;
 
-        if($this->pontosVida <= 0) {
+        if ($this->pontosVida <= 0) {
             $this->morrer();
         }
     }
 
-    public function recuperarVida($quantidade) {
+    public function recuperarVida($quantidade)
+    {
         $this->pontosVida += $quantidade;
         echo "{$this->nome} recuperou $quantidade pontos de vida. <br>";
     }
 
-    private function morrer() {
+    private function morrer()
+    {
         $this->vivo = false;
         echo "{$this->nome} morreu. <br>";
     }
 }
 
-class Guerreiro extends Personagem {
+class Guerreiro extends Personagem
+{
     private $poderEscudo;
     private $ataqueEspada;
 
@@ -62,7 +68,8 @@ class Guerreiro extends Personagem {
     }
 }
 
-class Mago extends Personagem {
+class Mago extends Personagem
+{
     private $pontosMagia;
 
     public function __construct($nome, $pontosVida, $poderAtaque, $pontosMagia)
@@ -73,7 +80,7 @@ class Mago extends Personagem {
 
     public function atacar($inimgo)
     {
-        if($this->pontosMagia > 5) {
+        if ($this->pontosMagia > 5) {
             $inimgo->sofrerDano($this->poderAtaque);
             $this->pontosMagia -= 5;
         }
@@ -99,4 +106,3 @@ $mago->exibirDados();
 echo "Mago atacou o Guerreiro: <br>";
 $mago->atacar($guerreiro);
 $guerreiro->exibirDados();
-?>
