@@ -33,7 +33,8 @@ if($result->num_rows>0){ //Numero de linhas maior que zero.
     echo "Nenhum registro encontrado";
 }
 
-print_r($result);
+//Fechando a conexão com o banco de dados
+$connection->close();
 
 
 
