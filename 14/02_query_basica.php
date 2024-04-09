@@ -18,6 +18,12 @@ $result = $connection->query($consulta);
 //Exibe os resultados em tela
 print_r($result);
 
+// Vendo os dados
+while($row = $result->fetch_assoc()){
+     echo "Nome: ". $row['nome']."<br>";
+     echo "Nome: ". $row['id']."<br>";
+     echo "<hr>";
+}
 
 // Fecha a conexão
 $connection->close();
