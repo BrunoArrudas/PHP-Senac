@@ -27,6 +27,7 @@ if($result->num_rows>0){ //Numero de linhas maior que zero.
     echo "ID: ".$row["id"]."br>";
     echo "Nome: ".$row["nome"]."br>";
     echo "Email: ".$row["email"]."br>";
+    echo "telefone: ".$row["telefone"]."br>";
     echo "<hr>";
    } 
 }else {

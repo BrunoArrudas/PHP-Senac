@@ -36,7 +36,7 @@ if($stmt){
 
     $stmt->close();
 }else{
-    echo "Erro na consulta preparada: ". $connection->erro;
+    echo "Erro na consulta preparada: ". $connection->error;
 }
 
 //Fecha a conexão com o banco de dados
