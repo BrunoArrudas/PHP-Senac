@@ -19,7 +19,7 @@ CREATE USER 'usuario_lista_compras'@'localhost' IDENTIFIED BY 'Senha@123';
 GRANT ALL PRIVILEGES ON lista_compras.* TO 'usuario_lista_compras'@'localhost';
 
 -- Atualizando as permissões
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES ;
 
 -- Inserindo dados na tabela "itens_compra"
 INSERT INTO itens_compra (nome_produto, quantidade) VALUES 
