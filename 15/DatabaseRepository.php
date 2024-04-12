@@ -48,6 +48,15 @@ class DatabaseRepository {
         return $success;  
     }
 
+    public function compraItem($id, $comprado) {
+            $sql = "UPDATE itens_compra SET comprado=? WHERE id = ?";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bind_param("ii", $comprado, $id);
+            $success = $stmt->execute();
+            $stmt->close();
+            return $success;
+        }
+
     public function deleteItem($id) {
         $sql = "DELETE FROM itens_compra WHERE id = ?";
         $stmt = $this->connection->prepare($sql);
