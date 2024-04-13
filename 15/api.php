@@ -25,6 +25,11 @@ switch($action){
         echo json_decode($repository->compraItem($id, $comprado));
         break;
 
+    case 'delete';
+        $id = $_GET ['id'];
+        echo json_decode($repository->deleteItem($id));
+        break;
+
 
 
 
