@@ -67,4 +67,16 @@ class DatabaseRepository
     {
         return  self::$server . " - " . self::$username;
     }
+
+    public static function getContactByName($nome) {
+        $connection = self::connect();
+        $result = $connection->query("SELECT * FROM contatos_info WHERE nome = '$nome'");
+
+        $nome = null;
+        if($result->num_rows > 0) {
+            $nome = $result->fetch_assoc();
+        }
+        $connection->close();
+        return $nome;
+    }
 }
