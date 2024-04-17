@@ -11,12 +11,10 @@ switch($action) {
         $id = $_GET['id'];
         echo json_encode(DatabaseRepository::getContactById($id));
         break;
-
-    case 'getByName':
+    case 'getNome':
         $nome = $_GET['nome'];
         echo json_encode(DatabaseRepository::getContactByName($nome));
         break;
-
     case 'add':
         $data = json_decode(file_get_contents('php://input', true));
         $success = DatabaseRepository::insertContact($data->nome, $data->telefone, $data->email);
