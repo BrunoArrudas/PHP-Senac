@@ -24,6 +24,24 @@
     </form>
 
     <script>
+        // Get By ID
+        document.getElementById('id').addEventListener('change', function() {
+            const id = document.getElementById('id').value;
+
+            fetch(`api.php?action=get&id=${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.error) {
+                        window.alert(data.error);
+                    } else {
+                        document.getElementById('nome').value = data.nome;
+                        document.getElementById('telefone').value = data.telefone;
+                        document.getElementById('email').value = data.email;
+                    }
+                })
+        })
+
+        // Atualiza os dados
         document.getElementById("updateForm").addEventListener('submit', function(event){
 
             const id = document.getElementById('id').value;
