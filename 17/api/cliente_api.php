@@ -20,4 +20,19 @@ function listarClientes(){
     echo json_encode($clientes);
 }
 
+function buscarClientePorId() {
+
+}
+
+function cadastrarCliente() {
+
+}
+
+function atualizarCliente() {
+
+}
+
+function excluirCliente() {
+    
+}
 ?>
