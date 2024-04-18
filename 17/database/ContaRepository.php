@@ -1,27 +1,22 @@
 <?php
+
 require_once 'DatabaseRepository.php';
 
-class Conta {
-    public static function getAllContas(){
-        $connection = DatabaseRepository::connect();
-        $resultadoConta = $connection->query("SELECT * FROM conta");
-         
-        $contas = [];
+class ContaRepository {
 
-        if($resultadoConta->num_rows > 0){
-            while($row = $resultadoConta->fetch_assoc()){
+    public static function getAllContas() {
+        $connection = DatabaseRepository::connect();
+        $result = $connection->query("SELECT * FROM conta");
+
+        $contas = [];
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
                 $contas[] = $row;
             }
         }
         $connection->close();
         return $contas;
-
     }
 }
-
-
-
-
-
 
 ?>
