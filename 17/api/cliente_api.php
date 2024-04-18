@@ -35,4 +35,12 @@ function atualizarCliente() {
 function excluirCliente() {
     
 }
+
+// Create Read Update Ddelete
+// Create = POST (INSERT)
+// Read = GET (SELECT)
+// Update = POST(GET) (UPDATE SET)
+// Delete = POST (DELETE)
+
+
 ?>
