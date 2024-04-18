@@ -1,0 +1,23 @@
+<?php
+
+require_once '../database/ClienteRepository.php';
+
+$action = $_GET['action'];
+
+switch($action){
+    
+    case 'listar':
+        echo json_encode(ClienteRepository::getAllClientes());
+        break;
+
+    default:
+    http_response_code(400); //Requisição invalida
+    echo json_encode(['error' => 'ação invalida']);
+}
+
+function listarClientes(){
+    $clientes = ClienteRepository::getAllClientes();
+    echo json_encode($clientes);
+}
+
+?>
