@@ -17,8 +17,12 @@ class ClienteRepository {
         $connection->close();
         return $cliente;
     }
+
+    public static function getClienteById($id){
+        $connection = DatabaseRepository::connect();
+        $sql = "SELECT * FROM cliente WHERE id = $id";
+        $result = $connection->query($sql);
+    }
 }
 ?>
 
-
-?>
