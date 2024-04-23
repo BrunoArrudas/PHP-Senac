@@ -1,5 +1,4 @@
 <?php
-
 require_once 'DatabaseRepository.php';
 
 class ContaRepository {
@@ -18,41 +17,43 @@ class ContaRepository {
         return $contas;
     }
 
-    public static function getContaById($id){
+    public static function getContaById($id) {
         $connection = DatabaseRepository::connect();
-        $sql = "SELECT * FROM conta WHERE id = $id";
-        $result = $connection->query($sql);
+        $result = $connection->query("SELECT * FROM conta WHERE id= $id");
 
         $conta = null;
-        if($result->num_rows > 0){
+
+        if($result->num_rows > 0) {
             $conta = $result->fetch_assoc();
         }
-    $connection->close();
-    return $conta;
+
+        $connection->close();
+        return $conta;
     }
 
-    public static function insertConta($nome, $cpf){
+    public static function insertConta($cliente_id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento) {
         $connection = DatabaseRepository::connect();
-        $sql = "INSERT INTO conta (nome,cpf) VALUES ('$nome','$cpf'";
+        $sql = "INSERT INTO conta (cliente_id, numero, saldo, tipo, limite_cheque_especial,	taxa_rendimento)
+                VALUES ($cliente_id, $numero, $saldo, '$tipo', $limite_cheque_especial, $taxa_rendimento)";
         $success = $connection->query($sql);
         $connection->close();
         return $success;
     }
 
-    public static function updateConta($id, $nome, $cpf){
+    public static function updateConta($id_conta, $saldo, $limite_cheque_especial, $taxa_rendimento) {
         $connection = DatabaseRepository::connect();
-        $sql = "UPDATE conta SET nome = '$nome', cpf = '$cpf' WHERE id = $id";
+        $sql = "UPDATE conta SET saldo=$saldo, limite_cheque_especial=$limite_cheque_especial, taxa_rendimento =$taxa_rendimento
+                WHERE id=$id_conta";
         $success = $connection->query($sql);
         $connection->close();
         return $success;
     }
 
-    public static function deleteConta($id){
+    public static function deleteConta($id) {
         $connection = DatabaseRepository::connect();
-        $success = $connection->query("DELETE FROM conta WHERE id= $id");
+        $success = $connection->query("DELETE FROM conta WHERE id=$id");
         $connection->close();
         return $success;
     }
-}
-
+}   
 ?>

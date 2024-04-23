@@ -5,20 +5,20 @@ $action = $_GET['action'];
 
 switch($action) {
     
-    case 'listar':
-        listarClientes();
+    case 'listar': //
+        listarContas();
         break;
-    case 'buscar':
-        buscarClientePorId();
+    case 'buscar': // 
+        buscarContaPorId();
         break;
     case 'cadastrar':
-        cadastrarCliente();
+        cadastrarConta();
         break;
     case 'atualizar':
-        atualizarCliente();
+        atualizarConta();
         break;
     case 'excluir':
-        excluirCliente();
+        excluirConta();
         break;
     default:
         http_response_code(400); // Requisição inválida
@@ -26,12 +26,12 @@ switch($action) {
 
 }
 
-function listarClientes() {
+function listarContas() {
     $action = ContaRepository::getAllContas();
     echo json_encode($action);
 }
 
-function buscarClientePorId() {
+function buscarContaPorId() {
     if($_SERVER['REQUEST_METHOD'] === 'GET') {
         $id = $_GET['id'];
         $cliente = ContaRepository::getContaById($id);
@@ -47,39 +47,46 @@ function buscarClientePorId() {
     }
 }
 
-function insertConta() {
-    if($_SERVER ['REQUEST_METHOD' === 'POST']){
+function cadastrarConta() {
+    if($_SERVER ['REQUEST_METHOD'] === 'POST'){
        $data = json_decode(file_get_contents("php://input"));
-       $nome = $data->nome;
-       $cpf = $data->cpf;
+       $id = $data->id;
+        $numero = $data->numero;
+        $saldo= $data->saldo;
+        $tipo = $data->tipo;
+        $limite_cheque_especial = $data->limite_cheque_especial;
+        $taxa_rendimento = $data->taxa_rendimento;
 
-       $success = ContaRepository::insertConta($nome, $cpf);
+       $success = ContaRepository::insertConta($id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento);
        echo json_encode(['success' => $success]);
     } else {
         http_response_code(405);
     }
 }
 
-function atualizarCliente() {
-    if($_SERVER ['REQUEST_METHOD' === 'POST']){
+function atualizarConta() {
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $data = json_decode(file_get_contents("php://input"));
         $id = $data->id;
-        $nome = $data->nome;
-        $cpf = $data->cpf;
- 
-        $success = ContaRepository::updateCliente($id, $nome, $cpf);
+        $numero = $data->numero;
+        $saldo= $data->saldo;
+        $tipo = $data->tipo;
+        $limite_cheque_especial = $data->limite_cheque_especial;
+        $taxa_rendimento = $data->taxa_rendimento;
+        $success = ContaRepository::updateConta($id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento );
+        
         echo json_encode(['success' => $success]);
     } else {
          http_response_code(405);
     }
 }
 
-function excluirCliente() {
+function excluirConta() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $data = json_decode(file_get_contents("php://input"));
         $id = $data->id;
 
-        $success = ContaRepository::deleteCliente($id);
+        $success = ContaRepository::deleteConta($id);
         echo json_encode(['success' => $success]);
     } else {
         http_response_code(405);
