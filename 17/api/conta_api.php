@@ -46,8 +46,6 @@ function buscarContaById() {
     }
 }
 
-// (cliente_id, numero, saldo, tipo, limite_cheque_especial, taxa_rendimento)
-// (1, 1001, 1500.00, 'corrente', 500.00, NULL)
 function cadastrarConta() {
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
