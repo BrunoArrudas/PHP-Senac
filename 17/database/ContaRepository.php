@@ -34,7 +34,7 @@ class ContaRepository {
     public static function insertConta($cliente_id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento) {
         $connection = DatabaseRepository::connect();
         $sql = "INSERT INTO conta (cliente_id, numero, saldo, tipo, limite_cheque_especial,	taxa_rendimento)
-                VALUES ($cliente_id, $numero, $saldo, '$tipo', $limite_cheque_especial, $taxa_rendimento)";
+                VALUES ($cliente_id, $numero, $saldo, '$tipo', '$limite_cheque_especial', '$taxa_rendimento')";
         $success = $connection->query($sql);
         $connection->close();
         return $success;
