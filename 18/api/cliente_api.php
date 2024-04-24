@@ -62,11 +62,9 @@ function cadastrarCliente() {
 function atualizarCliente() {
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
-        $id = $data->id;
-        $nome = $data->nome;
-        $cpf = $data->cpf;
+        $cliente = new Cliente ($data->id, $data->nome, $data->cpf);
 
-        $success = ClienteRepository::updateCliente($id, $nome, $cpf);
+        $success = ClienteRepository::updateCliente($cliente);
         echo json_encode(['success' => $success]);
     } else {
         http_response_code(405);
