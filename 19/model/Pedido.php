@@ -1,6 +1,6 @@
 <?php
 
-class Pedido {
+class Pedido implements JsonSerializable {
     
     private $id;
     private $data_pedido;
@@ -13,6 +13,13 @@ class Pedido {
         $this->status = $status;
     }
 
+    public function jsonSerialize(): array {
+        return [
+            'id' => $this->id,
+            'data_pedido' => $this->data_pedido,
+            'status' => $this->status
+        ];
+    }
 }
 
 
