@@ -1,5 +1,5 @@
 <?php
-require_once 'controller/PedidoController.php';
+require_once 'database/PedidoRepository.php';
 
 $entity = $_GET['entity'];
 $action = $_GET['action'];
