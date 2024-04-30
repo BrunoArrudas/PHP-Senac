@@ -13,6 +13,14 @@ class Pedido implements JsonSerializable {
         $this->status = $status;
     }
 
+    public function getDataPedido(){
+        return $this->data_pedido;
+    }
+
+    public function getStatus(){
+        return $this->status;
+    }
+
     public function jsonSerialize(): array {
         return [
             'id' => $this->id,
