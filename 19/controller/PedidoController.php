@@ -17,6 +17,14 @@ class PedidoController {
             case 'cadastrar':
                 self::cadastrarPedido();
                 break;
+            
+            case 'atualizar':
+                self::atualizarPedido();
+                break;
+
+            case 'excluir':
+                self::excluirProduto();
+                break;
 
             default:
             http_response_code(400); //Requisição Invalida
@@ -65,7 +73,32 @@ class PedidoController {
     }
 
     public static function atualizarPedido(){
-        echo json_encode("Pedido Atualizado");
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $status = $data->status;
+            $data_pedido = $data->data_pedido;
+
+            //Existindo um pedido!
+            $pedidoExistente = PedidoRepository::getPedidoById($id);
+            if($pedidoExistente){
+
+                //update das propriedades do pedido
+                $pedidoExistente->setStatus($status);
+                $pedidoExistente->setData($data);
+                
+                $success = PedidoRepository::updatePedido($pedidoExistente);
+                PedidoRepository::updatePedido($pedidoExistente);
+                echo json_encode(['success' => $success]);
+
+            } else {
+                http_response_code(404);
+                echo json_encode(['error' => 'Pedido não encontrado']);
+            }
+
+        } else {
+            http_response_code(405);
+        }
     }
 }
 ?>

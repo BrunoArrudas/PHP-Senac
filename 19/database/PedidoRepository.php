@@ -20,9 +20,7 @@ class PedidoRepository {
         return $pedidos;
     }
 
-<<<<<<< HEAD
     
-=======
     public static function getPedidoById($id){
         $connection = DatabaseRepository::connect();
         $result = $connection->query("SELECT* FROM pedido WHERE id = $id");
@@ -49,14 +47,13 @@ class PedidoRepository {
         return $success;
     }
 
-    public static function updatePedido() {
+    public static function updatePedido(Pedido $pedido) {
 
     }
 
     public static function deletePedido(){
 
     }
->>>>>>> 9640212 (19 - Pedido CRUD - Read e create)
 }
 
 
