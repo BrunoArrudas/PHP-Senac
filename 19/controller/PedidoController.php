@@ -63,5 +63,9 @@ class PedidoController {
         }
 
     }
+
+    public static function atualizarPedido(){
+        echo json_encode("Pedido Atualizado");
+    }
 }
 ?>
