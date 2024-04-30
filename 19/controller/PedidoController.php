@@ -23,7 +23,7 @@ class PedidoController {
                 break;
 
             case 'excluir':
-                self::excluirProduto();
+                self::deletePedido();
                 break;
 
             default:
