@@ -23,7 +23,7 @@ class PedidoController {
                 break;
 
             case 'excluir':
-                self::deletePedido();
+                self::excluirPedido();
                 break;
 
             default:
@@ -72,29 +72,37 @@ class PedidoController {
 
     }
 
-    public static function atualizarPedido(){
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    public static function atualizarPedido() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
             $status = $data->status;
             $data_pedido = $data->data_pedido;
 
-            //Existindo um pedido!
+            // Existindo um pedido!
             $pedidoExistente = PedidoRepository::getPedidoById($id);
-            if($pedidoExistente){
-
+            if($pedidoExistente) {
                 //update das propriedades do pedido
                 $pedidoExistente->setStatus($status);
-                $pedidoExistente->setData($data);
-                
-                $success = PedidoRepository::updatePedido($pedidoExistente);
-                PedidoRepository::updatePedido($pedidoExistente);
-                echo json_encode(['success' => $success]);
+                $pedidoExistente->setData($data_pedido);
 
+                $success = PedidoRepository::updatePedido($pedidoExistente, $id);
+                echo json_encode(['success' => $success]);
             } else {
                 http_response_code(404);
                 echo json_encode(['error' => 'Pedido não encontrado']);
             }
+        } else {
+            http_response_code(405);
+        }        
+    }
+
+    public static function excluirPedido(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $success = PedidoRepository::deletePedido($id);
+            echo json_encode(['success' => $success]);
 
         } else {
             http_response_code(405);
